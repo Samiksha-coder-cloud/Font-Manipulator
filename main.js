@@ -1,11 +1,9 @@
 function preload() {
 }
 
-noseX = 0;
-noseY = 0;
 leftWrist = 0;
 rightWrist = 0;
-wristX = 0;
+difference = 0;
 
 function setup() {
     video = createCapture(VIDEO);
@@ -22,8 +20,23 @@ function modelLoaded() {
     console.log("Model is Loaded");
 }
 
+function draw() {
+    background("#e96f6f");
+    textSize(difference);
+    fill("#00ff00");
+    text("Samiksha", 50, 100);
+}
+
 function gotPoses(results) {
     if (results) {
         console.log("results");
+
+        leftWrist = results[0].pose.leftWrist.x;
+        rightWrist = results[0].pose.rightWrist.y;
+        
+        difference = floor(leftWrist - rightWrist);
+        console.log(difference);
+
+        document.getElementById("name_span").innerHTML = "Width and Height of the Name = " + difference + " px";
     }
 }
