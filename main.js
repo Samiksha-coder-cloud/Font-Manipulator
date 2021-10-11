@@ -1,6 +1,8 @@
 function preload() {
 }
 
+noseX = 0;
+noseY = 0;
 leftWrist = 0;
 rightWrist = 0;
 difference = 0;
@@ -24,12 +26,17 @@ function draw() {
     background("#e96f6f");
     textSize(difference);
     fill("#00ff00");
-    text("Samiksha", 50, 100);
+    text("Samiksha", noseX, noseY);
 }
 
 function gotPoses(results) {
     if (results) {
         console.log("results");
+
+        noseX = results[0].pose.nose.x;
+        noseY = results[0].pose.nose.y;
+        console.log("NoseX= " + noseX);
+        console.log("NoseY= " + noseY);
 
         leftWrist = results[0].pose.leftWrist.x;
         rightWrist = results[0].pose.rightWrist.y;
